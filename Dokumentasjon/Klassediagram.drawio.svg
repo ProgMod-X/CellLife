@@ -1,0 +1,49 @@
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="161px" height="184px" viewBox="-0.5 -0.5 161 184" content="&lt;mxfile&gt;&lt;diagram id=&quot;B3IfxCWdqe0yYe2EVJUZ&quot; name=&quot;Page-1&quot;&gt;7VZRb5swEP41SOlDpwBNlz42pNseUqlaJu2xusAFvBofMm4T+ut3BhNCSNR07eMkhLjvPhvffZ8NXhjl2+8aiuyeEpReME62Xjj3giC4ueG7BSoH2MgCqRZJA/kdsBSv6MCxQ59FgmWPaIikEUUfjEkpjE0PA61p06etSfbfWkCKA2AZgxyiv0VisgadTsYd/gNFmrVv9scuk0NLdkCZQUKbPSi888JIE5nmKd9GKG3v2r40476dyO4WplGZcwa4vr+AfHa1WQK6xZmqrbjciFyC4mi2JmWWLuNzDFKkip9jfiVqBl5QG8HNunUJQwWjcSZksoCKnu3CSgPxUxvNMtLilacF6ebktDZO9+C6x1jakQyPGdVYMuehrdY/gO5h2yMuoDQOiElKKEqx2pWRg06FmpExlDuS6w2Xg9uT/fV3qrHbkXI0umJKO+DaCV0dxJvONzss2/fM1IHgvJru5u7k5Aen6HF1w4G6XjCz66dSlH9IPfIqby2fi+E2B6HflN3jVKc5qJCbdjqvYEUS0obAGw+qUW2vix7zwGrcbFNbQNMTRiSJPTVX1HhPSHkAtfaTuDYnzVcWEAuVLmrO/KpDfrqOW4h47FrWuzETSYLKGocMGGhcYldbENdZKzKZ8cUaReMvE2/CC4849ruYL0vXJiLFtYCoDYNswQ1aG57nruC4u9pz8/o8M329+riXro546UA5KWpFGuXag9H/J9lyFkBip9MvK+P80h9oGQ61DI/oJmGF8oEtbQTZ+XXDPdDzLcn6nhQqQy0+ScrdJ+ItLacfl3Jy4ligokiAz/DRxWAnG0xVD760302h1GPuRaF3O5GD7ApfMB393+qf5Y/pmXs9eLdBOOz+OOrc3m9bePcX&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs>
+        <clipPath id="mx-clip-4-31-152-74-0">
+            <rect x="4" y="31" width="152" height="74"/>
+        </clipPath>
+        <clipPath id="mx-clip-4-113-152-72-0">
+            <rect x="4" y="113" width="152" height="72"/>
+        </clipPath>
+    </defs>
+    <g>
+        <path d="M 0 26 L 0 0 L 160 0 L 160 26" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 0 26 L 0 180 L 160 180 L 160 26" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 0 26 L 160 26" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" font-weight="bold" pointer-events="none" text-anchor="middle" font-size="12px">
+            <text x="79.5" y="17.5">
+                Celle
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-4-31-152-74-0)" font-size="12px">
+            <text x="5.5" y="43.5">
+                + posisjon_x: int
+            </text>
+            <text x="5.5" y="57.5">
+                + posisjon_y: int
+            </text>
+            <text x="5.5" y="71.5">
+                + energi: int
+            </text>
+            <text x="5.5" y="85.5">
+                + nabolag: array(Celle)
+            </text>
+        </g>
+        <path d="M 0 104 L 160 104" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-4-113-152-72-0)" font-size="12px">
+            <text x="5.5" y="125.5">
+                + oppdater()
+            </text>
+            <text x="5.5" y="139.5">
+                + tegn()
+            </text>
+            <text x="5.5" y="153.5">
+                - finn_mål()
+            </text>
+            <text x="5.5" y="167.5">
+                - beveg()
+            </text>
+        </g>
+    </g>
+</svg>
