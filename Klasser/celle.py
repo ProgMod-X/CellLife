@@ -11,5 +11,5 @@ class Celle:
         self.nabolag = nabolag
     
     def tegn(self, canvas, tile_size, rect_size):
-        canvas.fill_style("sky")
+        canvas.fill_style = "blue"
         canvas.fill_rect(self.pos_x * tile_size, self.pos_y * tile_size, rect_size, rect_size)
