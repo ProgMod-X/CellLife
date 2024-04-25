@@ -1,4 +1,4 @@
-<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="162px" height="184px" viewBox="-0.5 -0.5 162 184" content="&lt;mxfile&gt;&lt;diagram id=&quot;B3IfxCWdqe0yYe2EVJUZ&quot; name=&quot;Page-1&quot;&gt;7VZNb5tAEP01SM4hlQGTuEcbp+nBkaK6Uo/RGsawzbKDlk1s8us7yy7GGFtxmxwrIYt58/Zj5r1d44VxsbtXrMwfMAXhBeN054ULLwii24h+DVBbYBJMLZApnlrI74AVfwMHjh36wlOoekSNKDQv+2CCUkKiexhTCrd92gZFf9WSZTAAVgkTQ/QXT3Vu0Wlw2+HfgWd5u7J/89VmCtaSXSVVzlLcHkDhnRfGClHbt2IXgzC9a/tix307k91vTIHUlwwI7IBXJl5cbYYAbnO6biuutrwQTFI036DUK5fxKWaCZ5LeE1oSFAGvoDSnZs1cQmNJaJJzkS5ZjS9mY5VmyXMbzXNU/I2mZcLNSWmlne7BTY+xMiMJHhOqoCLOY1utfwQ9sF2PuGSVdkCCQrCy4ut9GQVTGZdz1BoLRxo20/XXVAi7A8g19x6wAK1qorTZGyd0fRRvO9/ssfzQM1MHMufVbD93Jye9OEVPqxsO1PWCuSkJK179RvlEu5wZPtVHbQ5C35bd49TnOSCBmnY+L9kaBcssgQ4eq0eNva56zCOrUWd1YwGFzxCjQPLUQqL1HhfiCGrtJ2Cjz5qvKlnCZbZsOItJh/xwHTcQ0tiNaE5jztMUpDEOaqaZdYnZbYlUZ6NINKeHNIrHXyIvoo3HFPtdTI+hKx2jpFoYbzwEZMEtGBuecFdwsbucm0wXLzHT7eTjXpqc8NKRcoI3iljl2ovR/yfZChJAQKfTTyPj4tofaBkOtQxP6CbYGsQjWVpzNPMryz3S8z3J+p7kMgfFP0lKf3zhxTD9uJTRmWsByzJldIePrgYnWUMme/C1+d/kUj4VXhx6s0gMsmt4hWz0/6h/lj+mF5714K8NQmH3xdHkDj7bwrs/&lt;/diagram&gt;&lt;/mxfile&gt;">
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="162px" height="184px" viewBox="-0.5 -0.5 162 184" content="&lt;mxfile&gt;&lt;diagram id=&quot;B3IfxCWdqe0yYe2EVJUZ&quot; name=&quot;Page-1&quot;&gt;7VZNb6MwEP01SO2hqwDNR48J6XYPrVRtVtpj5cAEvDUeZNwk9NfvGJsQINFmtz2uhBDz5tl45j0bvDDK9w+KFdkTJiC8YJTsvXDpBcF0NKa7ASoLhHdTC6SKJxbyW2DF38GBI4e+8QTKDlEjCs2LLhijlBDrDsaUwl2XtkHRfWvBUhgAq5iJIfqTJzqz6CyYtvg34GnWvNmf3NlMzhqyq6TMWIK7Iyi898JIIWr7lO8jEKZ3TV/suK9nsoeFKZD6kgGBHbBl4s3VZgjgFqerpuJyx3PBJEWLDUq9chmfYiZ4Kuk5pleCImALSnNq1twlNBaExhkXySOr8M0srNQsfm2iRYaKv9O0TLg5Ka200z2YdBgrM5LgEaEKSuI8N9X6PeiJ7TvER1ZqB8QoBCtKvj6UkTOVcrlArTF3pGEzXX9NhbA/glxzHwBz0KoiSpOdOKGrXrxrfXPAsmPPzBzInFfTw9ytnPTgFD2tbjhQ1wsWpiQsefkL5Qutcm74VB+1OQh9W3aHU53ngARq2vm8ZGsULLUE2nisuqrtdd1h9qxGndW1BRS+QoQCyVNLidZ7XIge1NhPwEafNV9ZsJjL9LHmLG9b5LvruIGQxm5EvRszniQgjXFQM82sS8xqC6Q6a0XGC7pIo2j0ZeyNaeERxX4b02XoSkcoqRbGaw8BWXAHxoYn3BVc7C7nJtPFS8w0vf24l25PeKmnnOC1Ila55mD0/0m2nAQQ0Or0w8i4vPEHWoZDLcMTugm2BvFMltYczfzKcnt6/kmyrie5zEDxT5LSH114MMw+LuX4zLGARZEwOsOvrgc7WUMqO/CN+W5yKV9yLwq9+VgMsmvYQnrVpOmooR1CX8Amrv4fAp/lnNmFp0Dw19ahsP0XqXNHP3Th/W8=&lt;/diagram&gt;&lt;/mxfile&gt;">
     <defs>
         <clipPath id="mx-clip-4-31-152-74-0">
             <rect x="4" y="31" width="152" height="74"/>
@@ -42,7 +42,7 @@
                 - finn_mål()
             </text>
             <text x="5.5" y="167.5">
-                - beveg()
+                - beveg(mål_x, mål_y)
             </text>
         </g>
     </g>
