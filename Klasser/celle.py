@@ -32,10 +32,10 @@ class Celle:
             y_direction = -1
         
         new_x_pos = self.pos_x + x_direction
-        new_x_distance = abs(target_x - new_x_pos)
+        new_x_distance = ((target_x - new_x_pos)**2 + (target_y - self.pos_y)**2)**0.5
 
         new_y_pos = self.pos_y + y_direction
-        new_y_distance = abs(target_y - new_y_pos)
+        new_y_distance = ((target_x - self.pos_x)**2 + (target_y - new_y_pos)**2)**0.5
 
         # Beveg funksjonen returnerer den nye posisjonen.
         # En utvendig funksjon bestemmer om denne bevegelsen er mulig.
