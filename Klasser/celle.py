@@ -39,7 +39,7 @@ class Celle:
     def beveg(self, target_x, target_y):
         # Hvis cellen er på målet trenger den ikke å bevege seg.
         if target_x == self.pos_x and target_y == self.pos_y:
-            return
+            return [self.pos_x, self.pos_y]
 
         # Cellen kan kun bevege seg på en akse om gangen. F.eks. først x, deretter y
         # Hvordan bestemmer cellen hvilken akse den skal bevege seg på?
