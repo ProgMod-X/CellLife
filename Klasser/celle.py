@@ -65,3 +65,7 @@ class Celle:
             return [new_x_pos, self.pos_y]
         else:
             return [self.pos_x, new_y_pos]
+
+    def finn_mål(self, nabolag):
+        valid_targets = self.mål
+        return
