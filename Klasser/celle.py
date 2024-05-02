@@ -1,14 +1,36 @@
+import random
+
 class Celle:
     pos_x: int = None
     pos_y: int = None
     energi: int = None
-    nabolag: list = None
+
+    mål_x: int = None
+    mål_y: int = None
+    har_mål: bool = None
+
+    mål: list = None
+
+    mål_vekter: dict = None
+    vekt_min: float = None
+    vekt_max: float = None
 
     def __init__(self, x, y, energi, nabolag) -> None:
         self.pos_x = x
         self.pos_y = y
         self.energi = energi
-        self.nabolag = nabolag
+
+        self.har_mål = False
+        self.mål = [
+            "busk",
+            "celle"
+        ]
+
+        self.vekt_max = 1.0
+        self.vekt_min = 0.0
+        self.mål_vekter = {}
+        for m in self.mål:
+            self.mål_vekter[m] = random.randrange(self.vekt_min, self.vekt_max)
     
     def tegn(self, canvas, tile_size, rect_size):
         canvas.fill_style = "blue"
