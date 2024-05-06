@@ -2,8 +2,8 @@ class Busk:
     bær = None #Antal bær busken har
     tid_til_bær = None #Kor mange runder igjen til busken får eit til bær
     veksetid = None #Kor lang tid det tar for busken å få eit til bær
-    x = None
-    y = None
+    pos_x = None
+    pos_y = None
 
     def __init__(self, x, y, bær, veksetid):
         self.bær = bær
