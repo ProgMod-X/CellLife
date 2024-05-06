@@ -1,1 +1,3 @@
 Me skal laga ordanismar som har ein posisjon i eit rutenett. Dei har ein viss energi. Kvar tidseining an dei bevega seg ei rute og bruke ein energi. På forskjellege stadar er det buskar som dei kan spisa. Dette gjev dei energi, og etterpå treng buskane tid på å voksa igjen. Dei kan formera seg ved å treffast. Dei kan kanskje ha forskjellige eigenskapar om går i arv, som handlar om kva dei prøver å gjera og andre ting. Fangens dilemma.
+
+Laga gener frå 0 til 1 der eine sida gjer nokre fordeler, mens andre enden gjev andre. Gjerne tre slike slik at me kan laga farger av det. Då kan me la systemet finna ut desse verdiene sjølv.
