@@ -9,8 +9,8 @@ class Busk:
         self.bær = bær
         self.tid_til_bær = veksetid #Kor lang tid til neste bær startar som som veksetida
         self.veksetid = veksetid
-        self.x = x
-        self.y = y
+        self.pos_x = x
+        self.pos_y = y
     
     def veks(self): #Denne skal kjørast kvar runde og gjer at busken anten får eit til bær, eller i det minste kjem nærmare eit til.
         self.tid_til_bær -= 1
