@@ -2,15 +2,15 @@ class Busk:
     bær = None #Antal bær busken har
     tid_til_bær = None #Kor mange runder igjen til busken får eit til bær
     veksetid = None #Kor lang tid det tar for busken å få eit til bær
-    pos_x = None
-    pos_y = None
+    x = None
+    y = None
 
-    def __init__(self, bær, veksetid, pos_x, pos_y):
+    def __init__(self, x, y, bær, veksetid):
         self.bær = bær
         self.tid_til_bær = veksetid #Kor lang tid til neste bær startar som som veksetida
         self.veksetid = veksetid
-        self.pos_x = pos_x
-        self.pos_y = pos_y
+        self.x = x
+        self.y = y
     
     def veks(self): #Denne skal kjørast kvar runde og gjer at busken anten får eit til bær, eller i det minste kjem nærmare eit til.
         self.tid_til_bær -= 1
