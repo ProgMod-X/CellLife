@@ -76,8 +76,9 @@ class Celle:
         valid_targets = []
         for row in nabolag:
             for tile in row:
-                if tile != None:
-                    valid_targets.append(entities[tile])
+                content = entities[tile]
+                if content != None and content != self:
+                    valid_targets.append(content)
         
         if len(valid_targets) == 0:
             self.mål_x = random.randint(-2, 2) + self.pos_x
