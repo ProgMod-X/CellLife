@@ -10,9 +10,6 @@ class Celle:
     mål_y: int = None
     har_mål: bool = None
 
-    mål: list = None
-
-    mål_vekter: dict = None
     vekt_min: float = None
     vekt_max: float = None
 
@@ -21,6 +18,8 @@ class Celle:
         self.pos_y = y
         self.energi = energi
 
+        self.color = "blue"
+        
         self.har_mål = False
 
         self.vekt_max = 1.0
@@ -31,7 +30,7 @@ class Celle:
         #     self.mål_vekter[m] = random.randrange(self.vekt_min, self.vekt_max)
     
     def tegn(self, canvas, tile_size, rect_size):
-        canvas.fill_style = "blue"
+        canvas.fill_style = self.color
         canvas.fill_rect(self.pos_x * tile_size, self.pos_y * tile_size, rect_size, rect_size)
     
     def beveg(self):
@@ -66,40 +65,46 @@ class Celle:
             return [self.pos_x, new_y_pos]
 
     def finn_mål(self, nabolag, entities):
+        print(self.har_mål, self.mål_x, self.mål_y)
         if self.har_mål:
             # Check if the target is still there.
-            local_x = self.mål_x - self.pos_x + 2 # 2 is temp for vision range
-            local_y = self.mål_y - self.pos_y + 2
-            if nabolag[local_x][local_y] != None:
-                return 
+            if nabolag[self.mål_x][self.mål_y] == None:
+                self.har_mål = False
+                return
 
-        valid_targets = []
-        for row in nabolag:
-            for tile in row:
-                content = entities[tile]
-                if content != None and content != self:
-                    valid_targets.append(content)
+
+        # Decide what is desired target
+        desired = "celle"
+        if random.random() < 0.5:
+            desired = "busk"
+
+        # Search through vision for valid targets
+        closest = 10.0**6 # might cause bugs in massive world
+        closest_x = None
+        closest_y = None
+        x = 0
+        y = 0
+        found_something = False
+        for col in nabolag:
+            for tile in col:
+                if tile != None and entities[tile] != self:
+                    # Decide if target is closest and desired
+                    dist = ((x - self.pos_x)**2 + (y - self.pos_y)**2)**0.5
+                    selected = entities[tile]
+                    if dist < closest and str(type(selected)) == desired:
+                        closest = dist
+                        closest_x = x
+                        closest_y = y
+                        found_something = True
+                y += 1
+            x += 1
+
         
-        if len(valid_targets) == 0:
-            self.mål_x = random.randint(-2, 2) + self.pos_x
-            self.mål_y = random.randint(-2, 2) + self.pos_y
+        if not found_something:
+            self.mål_x = random.randint(0, 3)
+            self.mål_y = random.randint(0, 3)
 
-        # Choose target
-        choice = random.random()
-        target = None
-        if choice > self.celle_prioritet:
-            for potential_target in valid_targets:
-                if type(potential_target) == Celle:
-                    target = potential_target
-        else:
-            for potential_target in valid_targets:
-                if type(potential_target) != Celle and potential_target:
-                    target = potential_target
+        self.mål_x = closest_x
+        self.mål_y = closest_y
 
-        if target:
-            self.mål_x = target.pos_x
-            self.mål_y = target.pos_y
-        else:
-            self.mål_x = random.randint(-2, 2) + self.pos_x
-            self.mål_y = random.randint(-2, 2) + self.pos_y
         self.har_mål = True
