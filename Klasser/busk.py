@@ -27,7 +27,7 @@ class Busk:
         
     def tegn(self, canvas, tile_size, rect_size):
         if self.bær > 0:
-            canvas.fill_style = "green)"
+            canvas.fill_style = "green"
         else:
             canvas.fill_style = "brown"
         canvas.fill_rect(self.pos_x * tile_size, self.pos_y * tile_size, rect_size, rect_size)
