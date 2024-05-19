@@ -77,6 +77,9 @@ class Celle:
         self.mål_y -= dir_y
 
     def finn_mål(self, nabolag, entities):
+        if self.har_mål and self.mål_x - 2 == 0 and self.mål_y - 2 == 0:
+            # Når cellen er ved målet bør den gjøre noe
+            self.har_mål = False
         if self.har_mål:
             return
 
