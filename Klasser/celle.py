@@ -1,4 +1,5 @@
 import random
+from Klasser.busk import *
 
 class Celle:
     pos_x: int = None
@@ -77,16 +78,16 @@ class Celle:
         self.mål_y -= dir_y
 
     def finn_mål(self, nabolag, entities):
-        if self.har_mål and self.mål_x - 2 == 0 and self.mål_y - 2 == 0:
+        if self.har_mål and (2 - self.mål_x)**2 + (2 - self.mål_y)**2 == 1:
             # Når cellen er ved målet bør den gjøre noe
             self.har_mål = False
         if self.har_mål:
             return
 
         # Decide what is desired target
-        desired = "Celle"
+        desired = Celle
         if random.random() < 0.5:
-            desired = "Busk"
+            desired = Busk
 
         # Search through vision for valid targets
         closest = 10.0**6 # might cause bugs in massive world
@@ -104,14 +105,14 @@ class Celle:
                     selected = entities[tile]
                     #print(dist, closest)
                     #print(dist < closest, type(selected).__name__ == desired)
-                    if dist < closest and type(selected).__name__ == desired:
+                    if dist < closest and type(selected) == desired:
                         closest = dist
                         closest_x = x
                         closest_y = y
                         found_something = True
                 y += 1
             x += 1
-        #print("found_something", found_something)
+        print("found_something", found_something)
         if found_something:
             self.mål_x = closest_x
             self.mål_y = closest_y
