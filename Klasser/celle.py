@@ -14,11 +14,15 @@ class Celle:
     vekt_min: float = None
     vekt_max: float = None
 
-    def __init__(self, x, y, energi) -> None:
+    def __init__(self, x, y, energi, sight_range, world_x, world_y) -> None:
         self.pos_x = x
         self.pos_y = y
         self.energi = energi
 
+        self.world_x = world_x
+        self.world_y = world_y
+
+        self.sight_range = sight_range
         self.color = "blue"
         
         self.har_mål = False
@@ -33,22 +37,22 @@ class Celle:
     def tegn(self, canvas, tile_size, rect_size):
         # Draw target pos
         canvas.fill_style = "tomato"
-        canvas.fill_rect(((self.pos_x + self.mål_x - 2) % 10) * tile_size, ((self.pos_y + self.mål_y - 2) % 7) * tile_size, rect_size, rect_size)
+        canvas.fill_rect(((self.pos_x + self.mål_x - self.sight_range) % self.world_x) * tile_size, ((self.pos_y + self.mål_y - self.sight_range) % self.world_x) * tile_size, rect_size, rect_size)
         # Draw self
         canvas.fill_style = self.color
         canvas.fill_rect(self.pos_x * tile_size, self.pos_y * tile_size, rect_size, rect_size)
     
     def beveg(self):
         # Hvis cellen er på målet trenger den ikke å bevege seg.
-        if self.mål_x - 2 == 0 and self.mål_y - 2 == 0:
+        if self.mål_x - self.sight_range == 0 and self.mål_y - self.sight_range == 0:
             self.har_mål = False
             return [self.pos_x, self.pos_y, 0, 0]
 
         # Cellen kan kun bevege seg på en akse om gangen. F.eks. først x, deretter y
         # Hvordan bestemmer cellen hvilken akse den skal bevege seg på?
         # Den kan se på de fire nye mulige posisjonene og velge den som er nermest målet.
-        pos_x = 2
-        pos_y = 2
+        pos_x = self.sight_range
+        pos_y = self.sight_range
 
         x_direction = 1
         if self.mål_x < pos_x:
@@ -77,10 +81,24 @@ class Celle:
         self.mål_x -= dir_x
         self.mål_y -= dir_y
 
+    def spis(self, busk: Busk):
+        if busk.bær > 0:
+            ate_berry = busk.spis()
+            print(busk.bær)
+            if ate_berry:
+                self.energi += 1
+            print(self.energi)
+            return ate_berry
+
     def finn_mål(self, nabolag, entities):
-        if self.har_mål and (2 - self.mål_x)**2 + (2 - self.mål_y)**2 == 1:
+        if self.har_mål and (self.sight_range - self.mål_x)**2 + (self.sight_range - self.mål_y)**2 == 1:
             # Når cellen er ved målet bør den gjøre noe
-            self.har_mål = False
+
+            if nabolag[self.mål_x][self.mål_y] != None:
+                mål_entity = entities[nabolag[self.mål_x][self.mål_y]]
+                self.har_mål = self.spis(mål_entity)
+            else:
+                self.har_mål = False
         if self.har_mål:
             return
 
@@ -97,7 +115,7 @@ class Celle:
         y = 0
         found_something = False
         for col in nabolag:
-            y = 0
+            x = 0
             for tile in col:
                 if tile != None and entities[tile] != self:
                     # Decide if target is closest and desired
@@ -105,19 +123,24 @@ class Celle:
                     selected = entities[tile]
                     #print(dist, closest)
                     #print(dist < closest, type(selected).__name__ == desired)
-                    if dist < closest and type(selected) == desired:
-                        closest = dist
-                        closest_x = x
-                        closest_y = y
-                        found_something = True
-                y += 1
-            x += 1
-        print("found_something", found_something)
+                    if dist < closest:# and type(selected) == desired:
+                        if type(selected) == Busk and selected.bær > 0:
+                            closest = dist
+                            closest_x = x
+                            closest_y = y
+                            found_something = True
+                        if type(selected) == Celle:
+                            closest = dist
+                            closest_x = x
+                            closest_y = y
+                            found_something = True
+                x += 1
+            y += 1
         if found_something:
             self.mål_x = closest_x
             self.mål_y = closest_y
         else:
-            self.mål_x = random.randint(0, 3)
-            self.mål_y = random.randint(0, 3)
+            self.mål_x = random.randint(0, self.sight_range * 2)
+            self.mål_y = random.randint(0, self.sight_range * 2)
 
         self.har_mål = True
