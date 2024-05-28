@@ -91,9 +91,12 @@ class Celle:
 
             if nabolag[self.mål_x][self.mål_y] != None:
                 mål_entity = entities[nabolag[self.mål_x][self.mål_y]]
-                self.har_mål = self.spis(mål_entity)
-            else:
-                self.har_mål = False
+                if type(mål_entity) == Busk:
+                    self.spis(mål_entity)
+                else:
+                    skap_celle(self, mål_entity)
+
+            self.har_mål = False
         if self.har_mål:
             return
 
