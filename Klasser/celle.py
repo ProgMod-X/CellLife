@@ -11,10 +11,9 @@ class Celle:
     mål_y: int = None
     har_mål: bool = None
 
-    vekt_min: float = None
-    vekt_max: float = None
+    gen_mål_ønske: float = None # Float frå 0 til 1, der om den r 1 vil cella helst til busk, mens om 0 vil cella helst til celle.
 
-    def __init__(self, x, y, energi, sight_range, world_x, world_y) -> None:
+    def __init__(self, x, y, energi, sight_range, world_x, world_y, gen_mål_ønske) -> None:
         self.pos_x = x
         self.pos_y = y
         self.energi = energi
@@ -27,9 +26,7 @@ class Celle:
         
         self.har_mål = False
 
-        self.vekt_max = 1.0
-        self.vekt_min = 0.0
-        self.celle_prioritet = random.randrange(self.vekt_min, self.vekt_max)
+        self.gen_mål_ønske = gen_mål_ønske
         # self.mål_vekter = {}
         # for m in self.mål:
         #     self.mål_vekter[m] = random.randrange(self.vekt_min, self.vekt_max)
@@ -44,7 +41,7 @@ class Celle:
     
     def beveg(self):
         # Hvis cellen er på målet trenger den ikke å bevege seg.
-        if self.mål_x - self.sight_range == 0 and self.mål_y - self.sight_range == 0:
+        if (self.mål_x - self.sight_range)**2 + (self.mål_y - self.sight_range)**2 == 1:
             self.har_mål = False
             return [self.pos_x, self.pos_y, 0, 0]
 
@@ -82,13 +79,11 @@ class Celle:
         self.mål_y -= dir_y
 
     def spis(self, busk: Busk):
-        if busk.bær > 0:
-            ate_berry = busk.spis()
+        if busk.spis():
             print(busk.bær)
-            if ate_berry:
-                self.energi += 1
+            self.energi += 1
             print(self.energi)
-            return ate_berry
+            return True
 
     def finn_mål(self, nabolag, entities):
         if self.har_mål and (self.sight_range - self.mål_x)**2 + (self.sight_range - self.mål_y)**2 == 1:
@@ -104,15 +99,19 @@ class Celle:
 
         # Decide what is desired target
         desired = Celle
-        if random.random() < 0.5:
+        if random.random() < self.gen_mål_ønske:
             desired = Busk
 
         # Search through vision for valid targets
-        closest = 10.0**6 # might cause bugs in massive world
-        closest_x = None
-        closest_y = None
+        closest_desired = 10.0**6 # might cause bugs in massive world
+        closest_desired_x = None
+        closest_desired_y = None
+        closest_not_desired = 10.0**6 # might cause bugs in massive world
+        closest_not_desired_x = None
+        closest_not_desired_y = None
         x = 0
         y = 0
+        found_desired = False
         found_something = False
         for col in nabolag:
             x = 0
@@ -123,22 +122,24 @@ class Celle:
                     selected = entities[tile]
                     #print(dist, closest)
                     #print(dist < closest, type(selected).__name__ == desired)
-                    if dist < closest:# and type(selected) == desired:
-                        if type(selected) == Busk and selected.bær > 0:
-                            closest = dist
-                            closest_x = x
-                            closest_y = y
-                            found_something = True
-                        if type(selected) == Celle:
-                            closest = dist
-                            closest_x = x
-                            closest_y = y
-                            found_something = True
+                    if dist < closest_desired and type(selected) == desired and (type(selected) == Celle or selected.bær > 0):
+                        closest_desired = dist
+                        closest_desired_x = x
+                        closest_desired_y = y
+                        found_desired = True
+                    elif dist < closest_not_desired and (type(selected) == Celle or selected.bær > 0):
+                        closest_not_desired = dist
+                        closest_not_desired_x = x
+                        closest_not_desired_y = y
+                        found_something = True
                 x += 1
             y += 1
-        if found_something:
-            self.mål_x = closest_x
-            self.mål_y = closest_y
+        if found_desired:
+            self.mål_x = closest_desired_x
+            self.mål_y = closest_desired_y
+        elif found_something:
+            self.mål_x = closest_not_desired_x
+            self.mål_y = closest_not_desired_y
         else:
             self.mål_x = random.randint(0, self.sight_range * 2)
             self.mål_y = random.randint(0, self.sight_range * 2)
