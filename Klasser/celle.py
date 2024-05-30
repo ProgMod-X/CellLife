@@ -44,7 +44,7 @@ class Celle:
     def beveg(self):
         # Hvis cellen er på målet trenger den ikke å bevege seg.
         if (self.mål_x - self.sight_range)**2 + (self.mål_y - self.sight_range)**2 == 1:
-            self.har_mål = False
+            #self.har_mål = False
             return [self.pos_x, self.pos_y, 0, 0]
 
         # Cellen kan kun bevege seg på en akse om gangen. F.eks. først x, deretter y
@@ -82,17 +82,16 @@ class Celle:
 
     def spis(self, busk: Busk):
         if busk.spis():
-            print(busk.bær)
+            print("bær", busk.bær)
             self.energi += 1
-            print(self.energi)
+            print("energi", self.energi)
             return True
 
     def finn_mål(self, nabolag, entities):
         if self.har_mål and (self.sight_range - self.mål_x)**2 + (self.sight_range - self.mål_y)**2 == 1:
             # Når cellen er ved målet bør den gjøre noe
-
-            if nabolag[self.mål_x][self.mål_y] != None:
-                mål_entity = entities[nabolag[self.mål_x][self.mål_y]]
+            if nabolag[self.mål_y][self.mål_x] != None:
+                mål_entity = entities[nabolag[self.mål_y][self.mål_x]]
                 if type(mål_entity) == Busk:
                     self.spis(mål_entity)
                 else:
