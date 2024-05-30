@@ -13,10 +13,12 @@ class Celle:
 
     gen_mål_ønske: float = None # Float frå 0 til 1, der om den r 1 vil cella helst til busk, mens om 0 vil cella helst til celle.
 
-    def __init__(self, x, y, energi, sight_range, world_x, world_y, gen_mål_ønske) -> None:
+    def __init__(self, x, y, energi, sight_range, world_x, world_y, gen_mål_ønske, skap_celle) -> None:
         self.pos_x = x
         self.pos_y = y
         self.energi = energi
+
+        self.skap_celle = skap_celle
 
         self.world_x = world_x
         self.world_y = world_y
@@ -94,7 +96,7 @@ class Celle:
                 if type(mål_entity) == Busk:
                     self.spis(mål_entity)
                 else:
-                    skap_celle(self, mål_entity)
+                    self.skap_celle(self, mål_entity)
 
             self.har_mål = False
         if self.har_mål:
