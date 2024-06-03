@@ -5,15 +5,15 @@ class Celle:
     pos_x: int = None
     pos_y: int = None
     energi: int = None
-    vision = None
 
     mål_x: int = None
     mål_y: int = None
     har_mål: bool = None
 
     gen_mål_ønske: float = None # Float frå 0 til 1, der om den r 1 vil cella helst til busk, mens om 0 vil cella helst til celle.
+    gen_syn_og_energi_effektivitet: float = None #Float frå 0 til 1. 1 er godt syn, 0 er meir energi frå busk.
 
-    def __init__(self, x, y, energi, sight_range, world_x, world_y, gen_mål_ønske, skap_celle) -> None:
+    def __init__(self, x, y, energi, world_x, world_y, gen_mål_ønske, gen_syn_og_energi_effektivitet, skap_celle) -> None:
         self.pos_x = x
         self.pos_y = y
         self.energi = energi
@@ -23,12 +23,15 @@ class Celle:
         self.world_x = world_x
         self.world_y = world_y
 
-        self.sight_range = sight_range
         self.color = "blue"
         
         self.har_mål = False
 
         self.gen_mål_ønske = gen_mål_ønske
+        self.gen_syn_og_energi_effektivitet = gen_syn_og_energi_effektivitet
+
+        self.sight_range = int(3*gen_syn_og_energi_effektivitet + 1)
+        self.energi_frå_busk = int(-5*gen_syn_og_energi_effektivitet + 10)
         # self.mål_vekter = {}
         # for m in self.mål:
         #     self.mål_vekter[m] = random.randrange(self.vekt_min, self.vekt_max)
@@ -79,11 +82,12 @@ class Celle:
         self.pos_y = new_y
         self.mål_x -= dir_x
         self.mål_y -= dir_y
+        self.energi -= 1
 
     def spis(self, busk: Busk):
         if busk.spis():
             print("bær", busk.bær)
-            self.energi += 1
+            self.energi += self.energi_frå_busk
             print("energi", self.energi)
             return True
 
