@@ -12,8 +12,9 @@ class Celle:
 
     gen_mål_ønske: float = None # Float frå 0 til 1, der om den r 1 vil cella helst til busk, mens om 0 vil cella helst til celle.
     gen_syn_og_energi_effektivitet: float = None #Float frå 0 til 1. 1 er godt syn, 0 er meir energi frå busk.
+    gen_energi_overføring: float = None #Kor stor del av energien som vli bli overført til ungane. Ved 1 overførast alt, 0 ingenting og 0,5 halvparten.
 
-    def __init__(self, x, y, energi, world_x, world_y, gen_mål_ønske, gen_syn_og_energi_effektivitet, skap_celle) -> None:
+    def __init__(self, x, y, energi, world_x, world_y, gen_mål_ønske, gen_syn_og_energi_effektivitet, gen_energi_overføring, skap_celle) -> None:
         self.pos_x = x
         self.pos_y = y
         self.energi = energi
@@ -29,6 +30,7 @@ class Celle:
 
         self.gen_mål_ønske = gen_mål_ønske
         self.gen_syn_og_energi_effektivitet = gen_syn_og_energi_effektivitet
+        self.gen_energi_overføring = gen_energi_overføring
 
         self.sight_range = int(3*gen_syn_og_energi_effektivitet + 1)
         self.energi_frå_busk = int(-5*gen_syn_og_energi_effektivitet + 10)
