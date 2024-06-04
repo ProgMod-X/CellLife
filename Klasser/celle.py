@@ -92,9 +92,7 @@ class Celle:
 
     def spis(self, busk: Busk):
         if busk.spis():
-            print("bær", busk.bær)
             self.energi += self.energi_frå_busk
-            print("energi", self.energi)
             return True
 
     def finn_mål(self, nabolag, entities):
