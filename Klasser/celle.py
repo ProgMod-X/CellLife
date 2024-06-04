@@ -88,7 +88,6 @@ class Celle:
         self.pos_y = new_y
         self.mål_x -= dir_x
         self.mål_y -= dir_y
-        self.energi -= 1
 
     def spis(self, busk: Busk):
         if busk.spis():
