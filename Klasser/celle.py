@@ -44,9 +44,9 @@ class Celle:
         #canvas.fill_style = "tomato"
         #canvas.fill_rect(((self.pos_x + self.mål_x - self.sight_range) % self.world_x) * tile_size, ((self.pos_y + self.mål_y - self.sight_range) % self.world_x) * tile_size, rect_size, rect_size)
         # Draw self
-        gen_1_color = str(floor(self.gen_energi_overføring * 255))
-        gen_2_color = str(floor(self.gen_mål_ønske * 255))
-        gen_3_color = str(floor(self.gen_syn_og_energi_effektivitet * 255))
+        gen_1_color = str(floor(self.gen_mål_ønske * 255))
+        gen_2_color = str(floor(self.gen_syn_og_energi_effektivitet * 255))
+        gen_3_color = str(floor(self.gen_energi_overføring * 255))
         canvas.fill_style = f"rgb({gen_1_color}, {gen_2_color}, {gen_3_color})"
         canvas.fill_rect(self.pos_x * tile_size, self.pos_y * tile_size, rect_size, rect_size)
     
